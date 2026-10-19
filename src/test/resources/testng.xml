@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="SauceDemo_Login">
+    <listeners>
+        <listener class-name="com.saucedemo.utils.listeners.TestListener"/>
+        <listener class-name="com.saucedemo.utils.listeners.AnnotationTransformer"/>
+    </listeners>
+<test name="CP001_Login_Exitoso_Standard_User"><classes><class name="com.saucedemo.tests.login.CP001_Login_Exitoso_Standard_User"/></classes></test>
+<test name="CP002_Login_Usuario_Bloqueado"><classes><class name="com.saucedemo.tests.login.CP002_Login_Usuario_Bloqueado"/></classes></test>
+<test name="CP003_Login_Password_Incorrecta"><classes><class name="com.saucedemo.tests.login.CP003_Login_Password_Incorrecta"/></classes></test>
+<test name="CP004_Login_Usuario_Inexistente"><classes><class name="com.saucedemo.tests.login.CP004_Login_Usuario_Inexistente"/></classes></test>
+<test name="CP005_Login_Usuario_Vacio"><classes><class name="com.saucedemo.tests.login.CP005_Login_Usuario_Vacio"/></classes></test>
+<test name="CP006_Login_Password_Vacia"><classes><class name="com.saucedemo.tests.login.CP006_Login_Password_Vacia"/></classes></test>
+<test name="CP007_Login_Campos_Vacios"><classes><class name="com.saucedemo.tests.login.CP007_Login_Campos_Vacios"/></classes></test>
+<test name="CP008_Logout"><classes><class name="com.saucedemo.tests.login.CP008_Logout"/></classes></test>
+<test name="CP009_Acceso_Directo_Inventario_Sin_Sesion"><classes><class name="com.saucedemo.tests.login.CP009_Acceso_Directo_Inventario_Sin_Sesion"/></classes></test>
+<test name="CP010_Login_Exitoso_Otros_Usuarios"><classes><class name="com.saucedemo.tests.login.CP010_Login_Exitoso_Otros_Usuarios"/></classes></test>
+</suite>
