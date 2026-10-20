@@ -2,6 +2,7 @@ package com.saucedemo.tests.login;
 
 import com.saucedemo.pages.LoginPage;
 import com.saucedemo.tests.BaseTest;
+import com.saucedemo.utils.data.TestData;
 import org.testng.annotations.Test;
 
 import static com.saucedemo.utils.evidence.Evidencia.registrarPaso;
@@ -12,10 +13,9 @@ public class CP003_Login_Password_Incorrecta extends BaseTest {
     @Test(groups = {"login", "negative"}, description = "Usuario válido con contraseña incorrecta muestra error")
     public void ejecutar() {
         LoginPage loginPage = new LoginPage(driver()).open()
-                .loginExpectingError("standard_user", "clave_incorrecta");
+                .loginExpectingError(TestData.get("usuario"), TestData.get("password"));
 
-        assertEquals(loginPage.getErrorMessage(),
-                "Epic sadface: Username and password do not match any user in this service");
+        assertEquals(loginPage.getErrorMessage(), TestData.get("mensajeEsperado"));
         registrarPaso("Mensaje credenciales invalidas");
     }
 }

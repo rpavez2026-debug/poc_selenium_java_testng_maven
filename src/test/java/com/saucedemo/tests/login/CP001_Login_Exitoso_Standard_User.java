@@ -1,9 +1,9 @@
 package com.saucedemo.tests.login;
 
-import com.saucedemo.config.Config;
 import com.saucedemo.pages.InventoryPage;
 import com.saucedemo.pages.LoginPage;
 import com.saucedemo.tests.BaseTest;
+import com.saucedemo.utils.data.TestData;
 import org.testng.annotations.Test;
 
 import static com.saucedemo.utils.evidence.Evidencia.registrarPaso;
@@ -17,10 +17,10 @@ public class CP001_Login_Exitoso_Standard_User extends BaseTest {
         LoginPage loginPage = new LoginPage(driver()).open();
         registrarPaso("Pagina de login");
 
-        InventoryPage inventory = loginPage.loginAs("standard_user", Config.get("password"));
+        InventoryPage inventory = loginPage.loginAs(TestData.get("usuario"), TestData.get("password"));
 
         assertTrue(inventory.isLoaded(), "La página de inventario no cargó");
-        assertEquals(inventory.getTitle(), "Products");
+        assertEquals(inventory.getTitle(), TestData.get("tituloEsperado"));
         registrarPaso("Inventario cargado");
     }
 }

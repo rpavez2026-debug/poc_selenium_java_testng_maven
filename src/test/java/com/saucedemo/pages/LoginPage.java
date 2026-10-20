@@ -1,6 +1,7 @@
 package com.saucedemo.pages;
 
 import com.saucedemo.config.Config;
+import com.saucedemo.utils.logs.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -16,6 +17,7 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage open() {
+        Log.info("Abriendo página de login: " + Config.baseUrl());
         driver.get(Config.baseUrl());
         waitVisible(LOGIN_BUTTON);
         return this;
@@ -34,13 +36,16 @@ public class LoginPage extends BasePage {
     }
 
     private void submit(String username, String password) {
+        Log.info("Login con usuario '" + username + "'");
         type(USERNAME, username);
         type(PASSWORD, password);
         click(LOGIN_BUTTON);
     }
 
     public String getErrorMessage() {
-        return getText(ERROR_MESSAGE);
+        String error = getText(ERROR_MESSAGE);
+        Log.info("Mensaje de error mostrado: " + error);
+        return error;
     }
 
     public boolean isLoginButtonDisplayed() {

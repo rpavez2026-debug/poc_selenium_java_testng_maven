@@ -1,6 +1,7 @@
 package com.saucedemo.driver;
 
 import com.saucedemo.config.Config;
+import com.saucedemo.utils.logs.Log;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -45,6 +46,7 @@ public final class DriverFactory {
             driver.manage().window().maximize();
         }
         DRIVER.set(driver);
+        Log.info("Navegador iniciado: " + browser + (headless ? " (headless)" : ""));
     }
 
     private static ChromeOptions chromeOptions(boolean headless) {
@@ -79,6 +81,7 @@ public final class DriverFactory {
         if (driver != null) {
             driver.quit();
             DRIVER.remove();
+            Log.info("Navegador cerrado");
         }
     }
 }

@@ -12,9 +12,11 @@
     <properties>
         <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <selenium.version>4.27.0</selenium.version>
+        <!-- Cada versión de Selenium soporta CDP hasta cierta versión de Chrome; 4.51.0 cubre Chrome 155 -->
+        <selenium.version>4.51.0</selenium.version>
         <testng.version>7.10.2</testng.version>
         <surefire.version>3.5.2</surefire.version>
+        <log4j.version>2.24.3</log4j.version>
         <!-- Suite por defecto; se puede sobreescribir con -Dsuite=... -->
         <suite>testng.xml</suite>
     </properties>
@@ -39,9 +41,35 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.18.2</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- TestNG trae slf4j-api 1.7; el puente a log4j2 necesita 2.x -->
+        <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
+            <artifactId>slf4j-api</artifactId>
             <version>2.0.16</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Redirige a log4j2 lo que las librerías escriban vía SLF4J -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
+            <version>${log4j.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

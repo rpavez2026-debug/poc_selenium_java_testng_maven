@@ -2,6 +2,7 @@ package com.saucedemo.utils.evidence;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.saucedemo.driver.DriverFactory;
+import com.saucedemo.utils.logs.Log;
 import com.saucedemo.utils.reports.ExtentTestManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -32,6 +33,7 @@ public final class Evidencia {
     }
 
     public static void registrarPaso(String mensaje) {
+        Log.info("Paso: " + mensaje);
         String base64 = capturaBase64();
         ExtentTest test = ExtentTestManager.getTest();
         if (base64 == null) {

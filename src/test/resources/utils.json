@@ -1,0 +1,50 @@
+{
+  "CP001_Login_Exitoso_Standard_User": {
+    "usuario": "standard_user",
+    "password": "secret_sauce",
+    "tituloEsperado": "Products"
+  },
+  "CP002_Login_Usuario_Bloqueado": {
+    "usuario": "locked_out_user",
+    "password": "secret_sauce",
+    "mensajeEsperado": "Epic sadface: Sorry, this user has been locked out."
+  },
+  "CP003_Login_Password_Incorrecta": {
+    "usuario": "standard_user",
+    "password": "clave_incorrecta",
+    "mensajeEsperado": "Epic sadface: Username and password do not match any user in this service"
+  },
+  "CP004_Login_Usuario_Inexistente": {
+    "usuario": "usuario_inexistente",
+    "password": "secret_sauce",
+    "mensajeEsperado": "Epic sadface: Username and password do not match any user in this service"
+  },
+  "CP005_Login_Usuario_Vacio": {
+    "usuario": "",
+    "password": "secret_sauce",
+    "mensajeEsperado": "Epic sadface: Username is required"
+  },
+  "CP006_Login_Password_Vacia": {
+    "usuario": "standard_user",
+    "password": "",
+    "mensajeEsperado": "Epic sadface: Password is required"
+  },
+  "CP007_Login_Campos_Vacios": {
+    "usuario": "",
+    "password": "",
+    "mensajeEsperado": "Epic sadface: Username is required"
+  },
+  "CP008_Logout": {
+    "usuario": "standard_user",
+    "password": "secret_sauce"
+  },
+  "CP009_Acceso_Directo_Inventario_Sin_Sesion": {
+    "ruta": "inventory.html",
+    "mensajeEsperado": "Epic sadface: You can only access '/inventory.html' when you are logged in."
+  },
+  "CP010_Login_Exitoso_Otros_Usuarios": {
+    "usuarios": ["problem_user", "performance_glitch_user", "error_user", "visual_user"],
+    "password": "secret_sauce",
+    "tituloEsperado": "Products"
+  }
+}

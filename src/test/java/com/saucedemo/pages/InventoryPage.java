@@ -1,5 +1,6 @@
 package com.saucedemo.pages;
 
+import com.saucedemo.utils.logs.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -25,6 +26,7 @@ public class InventoryPage extends BasePage {
     }
 
     public LoginPage logout() {
+        Log.info("Cerrando sesión desde el menú");
         click(MENU_BUTTON);
         click(LOGOUT_LINK);
         return new LoginPage(driver);

@@ -1,6 +1,7 @@
 package com.saucedemo.tests;
 
 import com.saucedemo.driver.DriverFactory;
+import com.saucedemo.utils.data.TestData;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -12,6 +13,8 @@ public abstract class BaseTest {
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() {
+        // Aquí y no en el listener, para que funcione también con -Dtest (sin testng.xml)
+        TestData.iniciar(getClass().getSimpleName());
         DriverFactory.initDriver();
     }
 

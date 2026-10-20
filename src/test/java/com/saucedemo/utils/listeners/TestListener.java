@@ -3,10 +3,9 @@ package com.saucedemo.utils.listeners;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.saucedemo.utils.evidence.Evidencia;
+import com.saucedemo.utils.logs.Log;
 import com.saucedemo.utils.reports.ExtentManager;
 import com.saucedemo.utils.reports.ExtentTestManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -17,8 +16,6 @@ import org.testng.ITestResult;
  */
 public class TestListener implements ITestListener {
 
-    private static final Logger LOG = LoggerFactory.getLogger(TestListener.class);
-
     private static String testName(ITestResult result) {
         return result.getTestClass().getRealClass().getSimpleName();
     }
@@ -26,20 +23,20 @@ public class TestListener implements ITestListener {
     @Override
     public void onTestStart(ITestResult result) {
         String name = testName(result);
-        LOG.info("{} comenzando", name);
+        Log.info("===== " + name + " comenzando =====");
         ExtentTestManager.startTest(name, result.getMethod().getDescription());
         Evidencia.iniciar(name);
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        LOG.info("{} OK", testName(result));
+        Log.info("===== " + testName(result) + " OK =====");
         log(Status.PASS, "Test exitoso");
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        LOG.info("{} FALLÓ: {}", testName(result), result.getThrowable().getMessage());
+        Log.error("===== " + testName(result) + " FALLÓ =====", result.getThrowable());
         ExtentTest test = ExtentTestManager.getTest();
         if (test != null) {
             test.fail(result.getThrowable());
@@ -50,10 +47,10 @@ public class TestListener implements ITestListener {
     @Override
     public void onTestSkipped(ITestResult result) {
         if (result.wasRetried()) {
-            LOG.info("{} falló, se reintenta", testName(result));
+            Log.warn("===== " + testName(result) + " falló, se reintenta =====");
             log(Status.WARNING, "Falló, se reintenta");
         } else {
-            LOG.info("{} omitido", testName(result));
+            Log.warn("===== " + testName(result) + " omitido =====");
             log(Status.SKIP, "Test omitido");
         }
     }
