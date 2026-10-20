@@ -20,6 +20,7 @@ public final class ExtentManager {
 
         ExtentReports extent = new ExtentReports();
         extent.attachReporter(reporter);
+        extent.setSystemInfo("Ambiente", Config.ambiente());
         extent.setSystemInfo("URL", Config.baseUrl());
         extent.setSystemInfo("Navegador", Config.get("browser"));
         extent.setSystemInfo("Headless", Config.get("headless"));

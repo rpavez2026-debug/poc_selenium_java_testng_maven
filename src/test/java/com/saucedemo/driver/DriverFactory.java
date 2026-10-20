@@ -46,7 +46,7 @@ public final class DriverFactory {
             driver.manage().window().maximize();
         }
         DRIVER.set(driver);
-        Log.info("Navegador iniciado: " + browser + (headless ? " (headless)" : ""));
+        Log.info("Navegador iniciado: " + browser + (headless ? " (headless)" : "") + " | URL: " + Config.baseUrl());
     }
 
     private static ChromeOptions chromeOptions(boolean headless) {

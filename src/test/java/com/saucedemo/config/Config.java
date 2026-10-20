@@ -2,6 +2,8 @@ package com.saucedemo.config;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
+import java.util.Locale;
 import java.util.Properties;
 
 /**
@@ -10,6 +12,7 @@ import java.util.Properties;
 public final class Config {
 
     private static final Properties PROPS = new Properties();
+    private static final List<String> AMBIENTES = List.of("DEV", "TEST", "PROD");
 
     static {
         try (InputStream in = Config.class.getClassLoader().getResourceAsStream("config.properties")) {
@@ -41,7 +44,19 @@ public final class Config {
         return Integer.parseInt(get(key));
     }
 
+    /** DEV, TEST o PROD (sin distinguir mayúsculas al pasarlo); cualquier otro valor lanza excepción. */
+    public static String ambiente() {
+        String ambiente = get("ambiente").toUpperCase(Locale.ROOT);
+        if (!AMBIENTES.contains(ambiente)) {
+            throw new IllegalArgumentException(
+                    "ambiente='" + ambiente + "' no es válido. Valores permitidos: " + String.join(", ", AMBIENTES));
+        }
+        return ambiente;
+    }
+
+    /** -Dbase.url=... manda; si no, base.url.&lt;ambiente&gt; de config.properties. */
     public static String baseUrl() {
-        return get("base.url");
+        String override = System.getProperty("base.url");
+        return override != null ? override.trim() : get("base.url." + ambiente().toLowerCase(Locale.ROOT));
     }
 }
