@@ -31,7 +31,3 @@ All code lives under `src/test/java/com/saucedemo/` (no `src/main`); dependencie
 - Report: `target/extent-reports/extent-report.html`.
 
 Locators prefer `id` or `data-test` attributes. Expected error messages are asserted as exact strings ("Epic sadface: ...").
-
-## Notes
-
-- The enclosing git repository is rooted at the user's home directory (`C:\Users\ricar`), not this folder.
